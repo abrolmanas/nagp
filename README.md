@@ -10,21 +10,23 @@
 		1. Navigate to the project directory:
 			cd Nagp/springboot-mongodb
    
-		2. Create a JAR file of the project:
-			./mvnw clean package
+		2. Create a JAR file of the project from the IDE framework or by command or from the IDE framework
 			
 ### 2. Run Docker Engine
 		1. Open Docker Engine
 
 ### 3. Build Docker Image
 
-		1. Create a Docker image of the project:
+		1. Switch to spring project directory
+			cd springboot-mongodb
+
+		2. Create a Docker image of the project:
 			docker build -t manas_nagp_sbmgdc .
 		
-		2. Tag the created image:
+		3. Tag the created image:
 			docker tag manas_nagp_sbmgdc manasabrol/manas_nagp_sbmgdc
 
-		3. Push the image to Docker Hub:
+		4. Push the image to Docker Hub:
 			docker push manasabrol/manas_nagp_sbmgdc
 
 ### 4. Run Kubernetes Environment
@@ -35,7 +37,7 @@
 ### 5. Deploy MongoDB on Kubernetes
 		
 		1. Switch to the database deployment directory:
-			cd Nagp/Deployment/Database Deployment
+			cd Deployment/Database Deployment
 
 		2. Apply the following Kubernetes configurations:
 			kubectl apply -f mongo-configmap.yaml
@@ -64,7 +66,7 @@
 ### 6. Deploy the Spring Boot Application on Kubernetes
 	
 		1. Switch to the API deployment directory:
-			cd Nagp/Deployment/API Deployment
+			cd Deployment/API Deployment
 
 		2. Apply the following Kubernetes configurations:
 			kubectl apply -f api-configmap.yaml
@@ -126,14 +128,14 @@
 ### 9. Implement Horizontal Pod Autoscaler (HPA)
 
 		1. Switch to the HPA deployment directory:
-			cd Nagp/Deployment/HPA Deployment
+			cd Deployment/HPA Deployment
 
 		2. Apply the HPA configuration:
 			kubectl apply -f api-hpa.yaml
 
 		3. Switch to the k8s-metrics directory:
-			cd Nagp/Deployment/k8s-metrics
-			kubectl apply .
+			cd Deployment/k8s-metrics
+			kubectl apply -f .
 
 		4. Check the HPA status:
 			kubectl get hpa
