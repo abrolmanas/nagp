@@ -9,6 +9,8 @@
 
 **Mongo Image URL:** https://hub.docker.com/_/mongo
 
+• **URL for Service API tier to view the records from backend tier:** http://127.0.0.1:54832/
+
 • **Link for screen recording video:** https://nagarro-my.sharepoint.com/:v:/p/manas_abrol/EceRKpkKQgBFjpZKVu4alUIBBZE_3_wQwbWsVILxIxOZWg?e=PnBCr7
 
 ## Prerequisites
