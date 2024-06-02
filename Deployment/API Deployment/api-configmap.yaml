@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+data:
+  SPRING_DATA_MONGODB_URI: mongodb://myuser:password@mongo:27017/productdb
+#  SPRING_DATA_MONGODB_URI: mongodb://myuser:password@mongo:27017/mydatabase
+#                           mongodb://localhost:27017
+#SPRING_DATA_MONGODB_URI: mongodb://manasnagp:27017/productdb
