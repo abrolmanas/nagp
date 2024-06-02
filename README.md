@@ -1,4 +1,10 @@
 # NAGP
+## NAGP
+• Link for the code repository: https://github.com/abrolmanas/nagp
+• Docker hub URL for docker images: 
+**Spring Boot Project Imahe URL:** https://hub.docker.com/repository/docker/manasabrol/manas_nagp_sbmgdc/general
+**Mongo Image URL:** https://hub.docker.com/_/mongo
+• Link for screen recording video showing everything mentioned above:https://nagarro-my.sharepoint.com/:v:/p/manas_abrol/EceRKpkKQgBFjpZKVu4alUIBBZE_3_wQwbWsVILxIxOZWg?e=PnBCr7
 
 ## Prerequisites
 - Docker Engine (Docker Desktop)
