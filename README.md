@@ -12,8 +12,11 @@
    
 		2. Create a JAR file of the project:
 			./mvnw clean package
+			
+### 2. Run Docker Engine
+		1. Open Docker Engine
 
-### 2. Build Docker Image
+### 3. Build Docker Image
 
 		1. Create a Docker image of the project:
 			docker build -t manas_nagp_sbmgdc .
@@ -24,12 +27,12 @@
 		3. Push the image to Docker Hub:
 			docker push manasabrol/manas_nagp_sbmgdc
 
-### 3. Run Kubernetes Environment
+### 4. Run Kubernetes Environment
 
 		1. Start Minikube:
 			minikube start
 
-### 4. Deploy MongoDB on Kubernetes
+### 5. Deploy MongoDB on Kubernetes
 		
 		1. Switch to the database deployment directory:
 			cd Nagp/Deployment/Database Deployment
@@ -58,7 +61,7 @@
 			]
 			});
 
-### 5. Deploy the Spring Boot Application on Kubernetes
+### 6. Deploy the Spring Boot Application on Kubernetes
 	
 		1. Switch to the API deployment directory:
 			cd Nagp/Deployment/API Deployment
@@ -76,7 +79,7 @@
 
 		5. Open the URL in a browser.
 		
-### 6. Perform a Rolling Update
+### 7. Perform a Rolling Update
 	
 		1. Switch to the project directory:
 			cd Nagp/springboot-mongodb
@@ -110,7 +113,7 @@
 		10. Rollback to a previous version:
 			kubectl rollout undo deployment/api-deployment
 
-### 7. Verify Data Persistence by Deleting Mongo Pod
+### 8. Verify Data Persistence by Deleting Mongo Pod
 
 		1. Delete the MongoDB pod:
 			kubectl delete pod mongo-0
@@ -120,7 +123,7 @@
 
 		3. Verify data persistence in the web application.
 		
-### 8. Implement Horizontal Pod Autoscaler (HPA)
+### 9. Implement Horizontal Pod Autoscaler (HPA)
 
 		1. Switch to the HPA deployment directory:
 			cd Nagp/Deployment/HPA Deployment
