@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            margin-top: 10px;
+        }
+        .btn-custom {
+            background-color: #f8f9fa;
+            color: white;
+        }
+        .btn-refresh {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-container">
+            <h2>Product List</h2>
+            <button class="btn btn-info btn-refresh" onclick="fetchProducts()">Refresh List</button>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="productList">
+                </tbody>
+            </table>
+        </div>
+        <div class="form-container">
+            <h2>Add Product</h2>
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productId">Product ID</label>
+                    <input type="text" class="form-control" id="productId" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" required>
+                </div>
+                <button type="submit" class="btn btn-success">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const productId = document.getElementById('productId').value;
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const quantity = document.getElementById('quantity').value;
+            const price = document.getElementById('price').value;
+
+            const product = {
+                productId,
+                name,
+                description,
+                quantity,
+                price
+            };
+
+            fetch('/addProduct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            })
+			.then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Product added successfully!');
+                fetchProducts();
+                document.getElementById('productForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        function fetchProducts() {
+            fetch('/getProducts')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('productList');
+                    productList.innerHTML = '';
+                    data.forEach(product => {
+                        const row = `
+                        <tr>
+                            <td>${product.productId}</td>
+                            <td>${product.name}</td>
+                            <td>${product.description}</td>
+                            <td>${product.quantity}</td>
+                            <td>${product.price}</td>
+                        </tr>
+                    `;
+                        productList.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Initial fetch of product list
+        fetchProducts();
+    </script>
+</body>
+</html>

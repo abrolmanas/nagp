@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  MONGO_INITDB_DATABASE: productdb
+  MONGO_INITDB_ROOT_USERNAME: myuser
+  host: mongodb-service
+  database: productdb  
